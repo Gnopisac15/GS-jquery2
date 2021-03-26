@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    html{
+        scroll-behavior: smooth;
+    }
+</style>
+<body id="top" style="scroll-behavior: smooth;"> 
+    <div class="container">
+        <div class="form-check mt-5">
+            <input type="checkbox" class="form-check-input" id="check">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-outline-primary" id="disable" disabled>Submit</button>
+
+        <table class="table-bordered table-striped table-dark w-50  mt-2" id="table">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+
+            <tr>
+                <td>Mark</td>
+                <td>1.2</td>
+            </tr>
+            <tr>
+                <td>James</td>
+                <td>2.2</td>
+            </tr>
+            <tr>
+                <td>David</td>
+                <td>1.6</td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>2.0</td>
+            </tr>
+
+        </table>
+        <button class="btn btn-outline-warning mt-2" id="btn-changeColor">Change Alternate Color</button>
+        <div class="input-group mt-3 w-25">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">Input</span>
+            </div>
+            <input type="text" class="form-control" id="input" maxlength="15">
+        </div>
+        <p class="lead mt-2"><span id="char">15</span> Character(s) remaining.</p>
+        <p class="lead text-primary" id="displayText"></p>
+        <button class="btn btn-outline-primary" id="add">Add</button>
+        <select name="cars" id="cars">
+            <optgroup>
+            </optgroup>
+        </select>
+        <button class="btn btn-outline-danger" id="remove">Remove</button>
+        <div class="asd">
+            <p>Input Amount: <input type="text" id="replace" class="mt-3 w-25" maxlength="15"></p>
+        </div>
+        <button id="change" value="b-a-b-y" class="btn btn-outline-success">b-a-b-y</button>
+        <button class="btn btn-outline-dark" id="btn-animate">Animate</button>
+        <p id="animate" class="lead mt-2 bg-dark text-white" style="width: 60px;">jQuery</p>
+
+        <button class="btn btn-outline-success" id="btnup">UP</button>
+        <button class="btn btn-outline-success" id="down">DOWN</button>
+        <button class="btn btn-outline-success" id="left">LEFT</button>
+        <button class="btn btn-outline-success" id="right">RIGHT</button>
+        <div class="container ">
+            <div class="container bg-dark rounded-circle" id="p1" style="width: 100px;height: 90px;position: absolute;">
+            </div>
+        </div>
+            <button class="btn scroll btn-outline-primary float-right">^</button>
+    </div>
+
+    <a href="#top" class="btn btn-outline-success float-right mr-5">Top</a>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('#check').on('change', function () {
+            !this.checked ? $("#disable").attr('disabled', true) : $("#disable").attr('disabled', false)
+
+        })
+        $('#btn-changeColor').on('click', function () {
+            $('thead th').css("background-color", "darkgray");
+            $("tr:even").css("background-color", "darkgray");
+            $("tr:odd").css("background-color", "dark");
+        })
+        $('#input').on('keyup', function () {
+            // var count = ;
+
+            $("#char").html(15 - $('#input').val().length)
+            $("#displayText").html($('#input').val())
+
+        })
+
+        $('#add').on('click', function () {
+            $('#cars').append('<option>' + $('#input').val() + '</option>')
+
+        })
+        $('#remove').on('click', function () {
+            $('#cars option:selected').remove()
+
+        })
+        $('#replace').on('keyup', function () {
+            this.value = this.value.replace(/[^0-9]*\.?[^0-9]+/g, '');
+
+
+        })
+        $('#change').on('click', function () {
+            if (this.value == "b-a-b-y") {
+                document.getElementById('change').innerHTML = "B-A-B-Y"
+                this.value = "B-A-B-Y"
+            } else {
+                document.getElementById('change').innerHTML = "b-a-b-y"
+                this.value = "b-a-b-y"
+            }
+        })
+        $('#btn-animate').on('click', function () {
+            $('#animate').animate({ width: "70%", opacity: "0.4", fontSize: "3em", marginLeft: "0.6in", borderWidth: "10px" }, 5000)
+        })
+        $('#btnup').on('click', function () {
+            $('#p1').animate({
+                top: "-=50px"
+            }, 'slow', 'swing');
+
+        })
+        $('#down').on('click', function () {
+            $('#p1').animate({
+                top: "+=50px"
+            }, 'slow', 'swing');
+
+        })
+        $('#right').on('click', function () {
+            $('#p1').animate({
+                right: "-=50px"
+            }, 'slow', 'swing');
+
+        })
+        $('#left').on('click', function () {
+            $('#p1').animate({
+                right: "+=50px"
+            }, 'slow', 'swing');
+
+        })
+        $('.scroll').on('click',function(){
+            $(window).scrollTop(0);
+
+        })
+
+    })
+
+</script>
+
+</html>
